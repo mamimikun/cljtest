@@ -24,12 +24,14 @@
 ;; an example: (cj-eval "CJCCC" 0 "X" 2 3)
 
 (defn -main[]
-  (loop [testnum (Integer/parseInt (read-line))]
-    (when (> testnum 0)
-      (println testnum)
-      (let [iv (clojure.string/split (read-line) #" ")]
-        (cj-eval
-         (nth iv 2) 0 "X"
-         (Integer/parseInt (nth iv 0))
-         (Integer/parseInt (nth iv 1))))
-      (recur (- testnum 1)))))
+  (let [testnum (Integer/parseInt (read-line))]
+    (loop [cnum 1]
+      (when (not (> cnum testnum))
+        (let [iv (clojure.string/split (read-line) #" ")]
+          (println
+           (str "Case #" cnum ": "
+            (cj-eval
+             (nth iv 2) 0 "X"
+             (Integer/parseInt (nth iv 0))
+             (Integer/parseInt (nth iv 1)))))
+          (recur (+ cnum 1)))))))
