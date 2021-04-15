@@ -1,5 +1,4 @@
 ;; the 'main' function
-
 (defn cj-eval [s tot prev x y]
   ;; params: input string, total, previously evaluated char, x, y
   ;; first, check for an empty string
@@ -31,7 +30,9 @@
           (println
            (str "Case #" cnum ": "
             (cj-eval
-             (nth iv 2) 0 "X"
+             (clojure.string/replace (nth iv 2) pat "?") 0 "X"
              (Integer/parseInt (nth iv 0))
              (Integer/parseInt (nth iv 1)))))
           (recur (+ cnum 1)))))))
+
+(-main)
